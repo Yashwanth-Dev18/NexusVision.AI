@@ -64,10 +64,13 @@ def main():
     else:
         st.info("👆 Please upload a CSV file to get started")
     
+    #centered footer
+    st.markdown("")
+    st.markdown("")
     st.markdown("Developed by Yashwanth Krishna Devanaboina")
     st.markdown("AI/ML Engineer | Software Developer | CS student at Lnu | AWS Certified Cloud Practitioner | Cisco Certified Data Analyst")
     st.markdown("[Github](https://github.com/Yashwanth-Dev18?tab=repositories) | [LinkedIn](https://www.linkedin.com/in/yashwanth-krishna-devanaboina-66ab83212/)")
-
+    st.markdown("")
 
 if __name__ == "__main__":
     main()
