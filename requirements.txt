@@ -5,3 +5,4 @@ transformers==4.30.0
 torch==2.0.1
 python-dotenv==1.0.0
 langchain==0.0.340
+sentencepiece==0.2.0
