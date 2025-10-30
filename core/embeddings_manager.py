@@ -3,16 +3,25 @@ from chromadb.utils import embedding_functions
 
 class EmbeddingsManager:
     def __init__(self):
-        # Use ChromaDB's default embedding function (no sentence-transformers needed!)
         self.client = chromadb.Client()
-        self.collection = self.client.create_collection(name="business_data")
+        
+        # FIX: Check if collection exists before creating
+        try:
+            # Try to get existing collection
+            self.collection = self.client.get_collection(name="business_data")
+        except:
+            # If it doesn't exist, create it
+            self.collection = self.client.create_collection(name="business_data")
     
     def add_documents(self, documents, metadatas=None):
-        # Adding documents to vector database
+        """Add documents to vector database"""
         # Create IDs for documents
         ids = [f"doc_{i}" for i in range(len(documents))]
-
-        # Add to collection - ONLY include metadatas if provided
+        
+        # FIX: Clear existing data before adding new data
+        self.collection.delete(ids=ids)  # Delete any existing docs with same IDs
+        
+        # Add to collection
         if metadatas:
             self.collection.add(
                 documents=documents,
@@ -23,7 +32,6 @@ class EmbeddingsManager:
             self.collection.add(
                 documents=documents,
                 ids=ids
-                # ← No metadatas parameter at all
             )
     
     def similarity_search(self, query, k=3):
