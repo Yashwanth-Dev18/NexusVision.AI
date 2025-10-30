@@ -8,19 +8,23 @@ class EmbeddingsManager:
         self.collection = self.client.create_collection(name="business_data")
     
     def add_documents(self, documents, metadatas=None):
-        """Add documents to vector database"""
-        if metadatas is None:
-            metadatas = [{} for _ in documents]
-        
+        # Adding documents to vector database
         # Create IDs for documents
         ids = [f"doc_{i}" for i in range(len(documents))]
-        
-        # Add to collection
-        self.collection.add(
-            documents=documents,
-            metadatas=metadatas,
-            ids=ids
-        )
+
+        # Add to collection - ONLY include metadatas if provided
+        if metadatas:
+            self.collection.add(
+                documents=documents,
+                metadatas=metadatas,
+                ids=ids
+            )
+        else:
+            self.collection.add(
+                documents=documents,
+                ids=ids
+                # ← No metadatas parameter at all
+            )
     
     def similarity_search(self, query, k=3):
         """Search for similar documents"""
