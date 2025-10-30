@@ -1,17 +1,11 @@
 import chromadb
-from sentence_transformers import SentenceTransformer
-import os
+from chromadb.utils import embedding_functions
 
 class EmbeddingsManager:
-    def __init__(self, model_name="all-MiniLM-L6-v2"):
-        self.embedding_model = SentenceTransformer(model_name)
+    def __init__(self):
+        # Use ChromaDB's default embedding function (no sentence-transformers needed!)
         self.client = chromadb.Client()
         self.collection = self.client.create_collection(name="business_data")
-    
-    def create_embeddings(self, texts):
-        """Create embeddings for text chunks"""
-        embeddings = self.embedding_model.encode(texts)
-        return embeddings
     
     def add_documents(self, documents, metadatas=None):
         """Add documents to vector database"""
