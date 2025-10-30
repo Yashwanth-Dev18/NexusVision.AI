@@ -8,8 +8,8 @@ import time
 
 def main():
     st.set_page_config(page_title="NexusVision.AI", layout="wide")
-    st.title("🧠 NexusVision.AI")
-    st.markdown("### Business Intelligence AI Assistant")
+    st.title("NexusVision.AI")
+    st.markdown("AI-Powered Business Intelligence Assistant integrated with RAG & LLM")
     
     # Initialize session state
     if 'rag_engine' not in st.session_state:
@@ -63,6 +63,11 @@ def main():
     
     else:
         st.info("👆 Please upload a CSV file to get started")
+    
+    st.markdown("Developed by Yashwanth Krishna Devanaboina")
+    st.markdown("AI/ML Engineer | Software Developer | CS student at Lnu | AWS Certified Cloud Practitioner | Cisco Certified Data Analyst")
+    st.markdown("[Github](https://github.com/Yashwanth-Dev18?tab=repositories) | [LinkedIn](https://www.linkedin.com/in/yashwanth-krishna-devanaboina-66ab83212/)")
+
 
 if __name__ == "__main__":
     main()
